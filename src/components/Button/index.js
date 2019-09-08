@@ -1,12 +1,11 @@
 import React from "react";
 
-function Button({ type = "default", className, children, onClick }) {
+function Button({props, className, children }) {
     return (
-      <button onClick={onClick} className={["btn btn-primary", 'm-3', `btn-${type}`, className].join(" ")}>
+      <button {...props} className={["btn btn-primary", 'm-3', className].join(" ")}>
         {children}
       </button>
     );
   }
   
 export default Button;
-

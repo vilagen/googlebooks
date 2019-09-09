@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Col, Row, Container } from "../Grid"; 
+// import { Col, Row, Container } from "../Grid"; 
 import Jumbotron from "../Jumbotron"
 
 class Title extends Component {

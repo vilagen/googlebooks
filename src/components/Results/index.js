@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import {Row, Col, Container } from "../Grid";
+import {Row, Container } from "../Grid";
 import ResultBox from "../ResultBox";
 
 class Results extends Component {

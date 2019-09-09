@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import Title from "../components/Title";
 import Results from "../components/Results";
 import Input from "../components/Input";
-import { Row, Col, Container } from "../components/Grid"
+import { Container } from "../components/Grid"
 import Button from "../components/Button"
+import API from "../utils/API";
 
 class Search extends Component {
 
@@ -17,6 +18,8 @@ class Search extends Component {
 		this.setState({
 				[name]: value
 		});
+		console.log(value)
+		console.log(this.state.bookSearch)
 	};
 
 	loadBooks = () => {
@@ -28,17 +31,12 @@ class Search extends Component {
   };
 
 	handleFormSubmit = event => {
-		event.preventDefault();
-		if (this.state.title && this.state.author) {
-		  API.saveBook({
-			title: this.state.title,
-			author: this.state.author,
-			synopsis: this.state.synopsis
-		  })
-			.then(res => this.loadBooks())
-			.catch(err => console.log(err));
-		}
-	};
+    // When the form is submitted, prevent its default behavior, get recipes update the recipes state
+    event.preventDefault();
+    API.getBooks(this.state.bookSearch)
+      .then(res => this.setState({ books: res.data }))
+      .catch(err => console.log(err));
+  };
 
 	render() { 
 			return ( 
@@ -58,7 +56,12 @@ class Search extends Component {
 											placeholder="Search for a Book"
 										/>
 										<div className="d-flex flex-row-reverse">
-										<Button>Search</Button>
+											<Button
+											onClick={this.handleFormSubmit}
+											type="success"
+											>
+												Search
+											</Button>
 										</div>
 								</form>
 						</div>

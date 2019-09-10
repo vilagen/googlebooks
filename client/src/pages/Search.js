@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import Title from "../components/Title";
-import Results from "../components/Results";
 import Input from "../components/Input";
-import { Container } from "../components/Grid"
+import { Row, Col, Container } from "../components/Grid"
 import Button from "../components/Button"
 import API from "../utils/API";
+import {BooksList, BooksListItem} from "../components/BookList";
 
 class Search extends Component {
 
@@ -22,13 +22,13 @@ class Search extends Component {
 		console.log(this.state.bookSearch)
 	};
 
-	loadBooks = () => {
-    API.getBooks()
-      .then(res =>
-        this.setState({ books: res.data, title: "", author: "", synopsis: "" })
-      )
-      .catch(err => console.log(err));
-  };
+	// loadBooks = () => {
+  //   API.getBooks()
+  //     .then(res =>
+  //       this.setState({ books: res.data, title: "", author: "", description: "" })
+  //     )
+  //     .catch(err => console.log(err));
+  // };
 
 	handleFormSubmit = event => {
     // When the form is submitted, prevent its default behavior, get recipes update the recipes state
@@ -68,7 +68,28 @@ class Search extends Component {
 						</div>
 					</Container>
 
-					<Results />
+					<Row>
+					<Container>
+							<div className="border">
+							<h5 className="m-3">Results</h5>
+							<BooksList>
+								{this.state.books.map(book => {
+									return (
+										<BooksListItem
+											title={book.volumeInfo.title}
+											subtitle={book.volumeInfo.subtitle}
+											infoLink={book.volumeInfo.infoLink}
+											delOrSaveBut="Save"
+											authors={book.volumeInfo.authors}
+											image={book.volumeInfo.imageLinks.thumbnail}
+											description={book.volumeInfo.infoLink}
+										/>
+									);
+								})}
+							</BooksList>
+							</div>
+					</Container>
+				</Row>
 
 				</div>
 		)

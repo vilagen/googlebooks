@@ -3,12 +3,13 @@ const router = require("express").Router();
 
 router.get("/books", (req, res) => {
 	axios
-	// axios.get(`https://www.googleapis.com/books/v1/volumes?q=${{ params: req.query }}&key=AIzaSyAGZGl6a-ZLYJDU2Cnh5wFN3A0IFjqD1W0`)
-	.get("http://www.recipepuppy.com/api/", { params: req.query })
-	.then(( {data: { results }}) => res.json(results))
+	.get(`https://www.googleapis.com/books/v1/volumes`, { params: req.query }) // , `&key=AIzaSyAGZGl6a-ZLYJDU2Cnh5wFN3A0IFjqD1W0`)
+	// .get("http://www.recipepuppy.com/api/", { params: req.query })
+	.then(( {data: { results }}) => { res.json(results); console.log(results) } )
 	.catch(err => res.status(422).json(err))
 });
-	 
+
+
 
 module.exports = router
 

@@ -31,10 +31,10 @@ class Search extends Component {
   // };
 
 	handleFormSubmit = event => {
-    // When the form is submitted, prevent its default behavior, get recipes update the recipes state
     event.preventDefault();
-    API.getBooks(this.state.bookSearch)
-      .then(res => this.setState({ books: res.data }))
+    API.searchBook(this.state.bookSearch)
+			.then( ({data: {items}} ) => 
+			this.setState({ books: items }))
 	  .catch(err => console.log(err));
 	  console.log(this.state.books)
   };

@@ -2,6 +2,10 @@ import axios from "axios";
 
 export default {
 
+    searchBook: query => {
+        return axios.get("https://www.googleapis.com/books/v1/volumes?", { params: { q: query } })
+    },
+
     getBooks: query => { 
         return axios.get("/api/books", { params: { q: query } });
     },

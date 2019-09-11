@@ -60,8 +60,7 @@ class Search extends Component {
 											<Button
 											onClick={this.handleFormSubmit}
 											type="primary"
-											>
-												Search
+											text="Search">
 											</Button>
 										</div>
 								</form>
@@ -73,16 +72,19 @@ class Search extends Component {
 							<div className="border">
 							<h5 className="m-3">Results</h5>
 							<BooksList>
-								{this.state.books.map(book => {
+								{this.state.books.map((book, index) => {
 									return (
 										<BooksListItem
+											key={index}
 											title={book.volumeInfo.title}
 											subtitle={book.volumeInfo.subtitle}
 											infoLink={book.volumeInfo.infoLink}
 											delOrSaveBut="Save"
 											authors={book.volumeInfo.authors}
 											image={book.volumeInfo.imageLinks.thumbnail}
-											description={book.volumeInfo.infoLink}
+											description={book.volumeInfo.description}
+											allowSave={true}
+											onSave={() => console.log(`#${book.volumeInfo.title} got clicked`)}
 										/>
 									);
 								})}

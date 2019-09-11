@@ -3,6 +3,9 @@ import {Row, Col, Container} from "../Grid";
 import Button from "../Button";
 import "./style.css"
 
+export function HandleSearch(infoLink){
+	window.location= infoLink;
+}
 
 export function BooksList({children}) {
 	return <ul className="list-group">{children}</ul>;
@@ -16,30 +19,42 @@ export function BooksListItem({
 	authors,
 	image,
 	description,
-	infoLink
+	infoLink,
+	allowSave,
+	allowDelete,
+	onSave,
+	onDelete,
 }) {
 		return (
 			<Container>
 				<div className="border">
 					<div className="d-flex justify-content-between">
 						<h4 className="m-3">{title}</h4>
-						<h5 className="m-3">{subtitle}</h5>
 							<section>
-									
-									<Button
-									href={infoLink}
-									type="primary">
-									View
-									</Button>
 
+									
+									<form action={infoLink}>
 									<Button
-									// onClick={props.delOrSave}
-									type="primary">
-									{/* {props.delOrSaveBut} */}
-									</Button>
+										type="primary"
+										text="View"
+									/>
+									</form>
+
+									{allowSave && <Button
+										onClick={onSave}
+										type="success"
+										text="Save"
+									/>}
+									
+									{allowDelete && <Button
+										onClick={onDelete}
+										type="danger"
+										text="Delete"
+									/>}
 
 							</section>    
 					</div>
+					<h5 className="m-3">{subtitle}</h5>
 					<p className="ml-3">{authors}</p>
 					
 					<Row>

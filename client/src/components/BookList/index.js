@@ -25,7 +25,7 @@ export function BooksListItem({
 }) {
 return (
 	<Container>
-		<div className="border my-2">
+		<div className="border my-2 bg-white">
 			<div className="d-flex justify-content-between">
 				<h4 className="m-3">{title}</h4>
 					<section>

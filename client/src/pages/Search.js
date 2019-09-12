@@ -58,7 +58,7 @@ class Search extends Component {
 					<div className="my-3" />
 
 					<Container>
-						<div className="border my-2">
+						<div className="border my-2 bg-light">
 							<h5 className="m-3">Book Search</h5>
 
 								<form className="mb-3 mx-3">
@@ -85,8 +85,11 @@ class Search extends Component {
 
 					<Row>
 					<Container>
-							<div className="border">
+						<div className="border bg-light text-center">
+
 							<h5 className="m-3">Results</h5>
+							<a className="btn btn-primary my-2" 
+							href="#">Saved Books</a>
 
 								<BooksList>
 									{this.state.books.map((book, index) => {

@@ -8,27 +8,34 @@ class Saved extends Component {
 
 	state = {
 			books: [],
-			bookSearch: "",
+			title: "",
+			subtitle: "",
+			author: "",
+			description: "",
+			image: "",
+			link: "",
+
 	};
 
-	handleInputChange = event => {
-		const { name, value } = event.target;
-		this.setState({
-				[name]: value
-		});
-		console.log(value)
-		console.log(this.state.bookSearch)
-	};
+	componentDidMount() {
+		this.loadBooks();
+		console.log(this.state.books)
+  }
 
 	loadBooks = () => {
     API.getBooks()
       .then(res =>
-				this.setState({ books: res.data,  title: "", author: "", description: "", 
+				this.setState({ books: res.data,  title: "", subtitle: "", author: "", description: "", 
 				image: "",  link: "", date: ""})
-      )
-      .catch(err => console.log(err));
+			)
+			.catch(err => console.log(err));
   };
 
+	deleteBook = id => {
+    API.deleteBook(id)
+      .then(res => this.loadBooks())
+      .catch(err => console.log(err));
+  };
 
 	render() { 
 			return ( 
@@ -43,24 +50,29 @@ class Saved extends Component {
 					<Container>
 							<div className="border">
 							<h5 className="m-3 text-center">List of Your Books</h5>
+
+							{this.state.books.length ? (
 							<BooksList>
-								{this.state.books.map((book, index) => {
-									return (
+								{this.state.books.map((book) => (
 										<BooksListItem
-											key={index}
-											title={book.volumeInfo.title}
-											subtitle={book.volumeInfo.subtitle}
-											infoLink={book.volumeInfo.infoLink}	
-											authors={book.volumeInfo.authors}
-											image={book.volumeInfo.imageLinks.thumbnail}
-											description={book.volumeInfo.description}
+											key={book._id}
+											title={book.title}
+											subtitle={book.subtitle}
+											infoLink={book.link}	
+											authors={book.author}
+											image={book.image}
+											description={book.description}
 											allowDelete={true}
-											onDelete={() => console.log(`${book.volumeInfo.title} got clicked!`)}
+											onDelete={() => this.deleteBook(book._id)}
 										/>
-									);
-								})}
+									)
+								)}
 							</BooksList>
-							</div>
+						) : (
+							<h3 className="text-center"> No Results to Display </h3>
+						)}
+
+						</div>
 					</Container>
 				</Row>
 

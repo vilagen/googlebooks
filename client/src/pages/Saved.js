@@ -24,10 +24,7 @@ class Saved extends Component {
 
 	loadBooks = () => {
     API.getBooks()
-      .then(res =>
-				this.setState({ books: res.data,  title: "", subtitle: "", author: "", description: "", 
-				image: "",  link: "", date: ""})
-			)
+      .then(res => this.setState({ books: res.data }))
 			.catch(err => console.log(err));
   };
 
@@ -51,26 +48,26 @@ class Saved extends Component {
 							<div className="border">
 							<h5 className="m-3 text-center">List of Your Books</h5>
 
-							{this.state.books.length ? (
-							<BooksList>
-								{this.state.books.map((book) => (
-										<BooksListItem
-											key={book._id}
-											title={book.title}
-											subtitle={book.subtitle}
-											infoLink={book.link}	
-											authors={book.author}
-											image={book.image}
-											description={book.description}
-											allowDelete={true}
-											onDelete={() => this.deleteBook(book._id)}
-										/>
-									)
-								)}
-							</BooksList>
-						) : (
-							<h3 className="text-center"> No Results to Display </h3>
-						)}
+							{!this.state.books.length ? (
+								<BooksList>
+									{this.state.books.map( book => (
+											<BooksListItem
+												key={book._id}
+												title={book.title}
+												subtitle={book.subtitle}
+												infoLink={book.link}	
+												authors={book.author}
+												image={book.image}
+												description={book.description}
+												allowDelete={true}
+												onDelete={() => this.deleteBook(book._id)}
+											/>
+										)
+									)}
+								</BooksList>
+							) : (
+								<h3 className="text-center"> No Results to Display </h3>
+							)}
 
 						</div>
 					</Container>

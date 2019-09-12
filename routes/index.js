@@ -11,10 +11,3 @@ router.use(function(req, res) {
 });
 
 module.exports = router;
-
-// 				title = items.volumeInfo.title
-// 				subtitle = items.volumeInfo.subtitle;
-// 				author = items.volumeInfo.authors
-// 				description = items.volumeInfo.description
-// 				image = items.volumeInfo.imageLinks.thumbnail
-// 				infoLink = items.volumeInfo.infoLink

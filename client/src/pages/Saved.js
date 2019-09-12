@@ -8,19 +8,11 @@ class Saved extends Component {
 
 	state = {
 			books: [],
-			title: "",
-			subtitle: "",
-			author: "",
-			description: "",
-			image: "",
-			link: "",
-
 	};
 
 	componentDidMount() {
 		this.loadBooks();
-		console.log(this.state.books)
-  }
+	};
 
 	loadBooks = () => {
     API.getBooks()
@@ -48,11 +40,11 @@ class Saved extends Component {
 							<div className="border">
 							<h5 className="m-3 text-center">List of Your Books</h5>
 
-							{!this.state.books.length ? (
+							
 								<BooksList>
-									{this.state.books.map( book => (
+									{this.state.books.map( (book, index) => (
 											<BooksListItem
-												key={book._id}
+												key={index}
 												title={book.title}
 												subtitle={book.subtitle}
 												infoLink={book.link}	
@@ -65,10 +57,6 @@ class Saved extends Component {
 										)
 									)}
 								</BooksList>
-							) : (
-								<h3 className="text-center"> No Results to Display </h3>
-							)}
-
 						</div>
 					</Container>
 				</Row>

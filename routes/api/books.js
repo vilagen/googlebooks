@@ -7,8 +7,8 @@ router.route("/")
   .get(booksController.findAll);
 
 // Matches with "/api/books/:id"
-router.route("/books")
-  .get(booksController.findAll)
+router.route("/:id")
+  .get(booksController.findById)
   .delete(booksController.remove);
 
 module.exports = router;

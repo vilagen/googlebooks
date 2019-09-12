@@ -89,7 +89,7 @@ class Search extends Component {
 
 							<h5 className="m-3">Results</h5>
 							<a className="btn btn-primary my-2" 
-							href="#">Saved Books</a>
+							href="/books">Saved Books</a>
 
 								<BooksList>
 									{this.state.books.map((book, index) => {

@@ -7,13 +7,10 @@ const bookSchema = new Schema({
   author: [{ type: String, required: true }], // res.items.volumeInfo.authors
   description: { type: String}, // res.items.volumeInfo.description
   image: String, // res.items.volumeInfo.imageLinks.thumbnail
-  infoLink: { type: Date, default: Date.now }, // res.items.volumeInfo.infoLink
+  // infoLink: { type: Date, default: Date.now }, // res.items.volumeInfo.infoLink
+  date: { type: Date, default: Date.now }
 });
 
 const Book = mongoose.model("Book", bookSchema);
 
 module.exports = Book;
-
-
-// res.items.volumeInfo.infoLink
-//

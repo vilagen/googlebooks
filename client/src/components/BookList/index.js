@@ -12,8 +12,6 @@ export function BooksList({children}) {
 }
 
 export function BooksListItem({
-	
-	props,
 	title,
 	subtitle = "",
 	authors,

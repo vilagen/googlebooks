@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Title from "../components/Title";
 import Input from "../components/Input";
-import { Row, Col, Container } from "../components/Grid"
+import { Row, Container } from "../components/Grid"
 import Button from "../components/Button"
 import API from "../utils/API";
 import {BooksList, BooksListItem} from "../components/BookList";
@@ -37,7 +37,22 @@ class Search extends Component {
 			this.setState({ books: items }))
 	  .catch(err => console.log(err));
 	  console.log(this.state.books)
-  };
+	};
+	
+	onClickSaveBook = (title, subtitle, author, description, image, infoLink) => {
+			API.saveBook({
+				title,
+				subtitle,
+				author,
+				description,
+				image,
+				infoLink
+			})
+				.then(res => {
+				alert("Book Saved.")
+				console.log(res)
+			})
+	}
 
 	render() { 
 			return ( 
@@ -78,13 +93,13 @@ class Search extends Component {
 											key={index}
 											title={book.volumeInfo.title}
 											subtitle={book.volumeInfo.subtitle}
-											infoLink={book.volumeInfo.infoLink}
-											delOrSaveBut="Save"
+											infoLink={book.volumeInfo.infoLink}	
 											authors={book.volumeInfo.authors}
 											image={book.volumeInfo.imageLinks.thumbnail}
 											description={book.volumeInfo.description}
 											allowSave={true}
-											onSave={() => console.log(`#${book.volumeInfo.title} got clicked`)}
+											onSave={() => this.onClickSaveBook(book.volumeInfo.title, book.volumeInfo.subtitle,
+											book.volumeInfo.authors[0], book.volumeInfo.description, book.volumeInfo.imageLinks.thumbnail, book.volumeInfo.infoLink)}
 										/>
 									);
 								})}

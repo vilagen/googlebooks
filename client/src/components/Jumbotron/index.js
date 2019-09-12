@@ -1,6 +1,6 @@
 import React from "react";
 
-function Jumbotron({ props, children }) {
+function Jumbotron({children }) {
     return (
         <div
             className={`jumbotron col-md-6 mx-auto`}

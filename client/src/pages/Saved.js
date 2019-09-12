@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import Title from "../components/Title";
 import { Row, Container } from "../components/Grid"
-// import API from "../utils/API";
+import API from "../utils/API";
 import {BooksList, BooksListItem} from "../components/BookList";
 
 class Saved extends Component {
@@ -20,26 +20,29 @@ class Saved extends Component {
 		console.log(this.state.bookSearch)
 	};
 
-	// loadBooks = () => {
-  //   API.getBooks()
-  //     .then(res =>
-  //       this.setState({ books: res.data, title: "", author: "", description: "" })
-  //     )
-  //     .catch(err => console.log(err));
-  // };
+	loadBooks = () => {
+    API.getBooks()
+      .then(res =>
+				this.setState({ books: res.data,  title: "", author: "", description: "", 
+				image: "",  link: "", date: ""})
+      )
+      .catch(err => console.log(err));
+  };
 
 
 	render() { 
 			return ( 
 				<div>
-					<Title />
+					<Title 
+					title="Your Saved Book List"
+					subtitle="View or Delete Your Books"/>
 
 					<div className="my-3" />
 
 					<Row>
 					<Container>
 							<div className="border">
-							<h5 className="m-3">Results</h5>
+							<h5 className="m-3 text-center">List of Your Books</h5>
 							<BooksList>
 								{this.state.books.map((book, index) => {
 									return (

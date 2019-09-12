@@ -23,50 +23,48 @@ export function BooksListItem({
 	onSave,
 	onDelete,
 }) {
-		return (
-			<Container>
-				<div className="border">
-					<div className="d-flex justify-content-between">
-						<h4 className="m-3">{title}</h4>
-							<section>
+return (
+	<Container>
+		<div className="border my-2">
+			<div className="d-flex justify-content-between">
+				<h4 className="m-3">{title}</h4>
+					<section>
 
-									
-									<form action={infoLink}>
-									<Button
-										type="primary"
-										text="View"
-									/>
-									</form>
+							<a class="btn btn-primary" 
+							href={infoLink}>View</a>
 
-									{allowSave && <Button
-										onClick={onSave}
-										type="success"
-										text="Save"
-									/>}
-									
-									{allowDelete && <Button
-										onClick={onDelete}
-										type="danger"
-										text="Delete"
-									/>}
+							{allowSave && <Button
+							onClick={onSave}
+							color="success"
+							text="Save"
+							/>}
 
-							</section>    
-					</div>
-					<h5 className="m-3">{subtitle}</h5>
-					<p className="ml-3">{authors}</p>
-					
-					<Row>
-						<Col size="xs-4 sm-2">
-								<img className="test m-3" src={image} />
-						</Col>
-						<Col size="xs-8 sm-9">
-								<p>{description}
-								</p>
-						</Col>
-					</Row>
-				</div>
-			</Container>
-		)
+							{allowDelete && <Button
+							onClick={onDelete}
+							color="danger"
+							text="Delete"
+							/>}
+
+						</section>    
+			</div>
+
+		<h5 className="m-3">{subtitle}</h5>
+		<p className="ml-3">{authors}</p>
+
+			<Row>
+
+				<Col size="xs-4 sm-2">
+					<img className="test m-3" src={image} />
+				</Col>
+
+				<Col size="xs-8 sm-9">
+					<p>{description}</p>
+				</Col>
+
+			</Row>
+		</div>
+	</Container>
+)
 }
 
 

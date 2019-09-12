@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-// import { Col, Row, Container } from "../Grid"; 
 import Jumbotron from "../Jumbotron"
 
-class Title extends Component {
-    render() {
+function Title(props){
         return (
 					<Jumbotron>
-						<h1 className="text-center">Google Books Search</h1>
-						<h2 className="text-center">Search and Save your Favorite Books!</h2>
+						<h1 className="text-center">{props.title}</h1>
+						<h2 className="text-center">{props.subtitle}</h2>
 					</Jumbotron>
         )
       }
-    }
+
 
 export default Title;

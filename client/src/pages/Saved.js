@@ -37,10 +37,13 @@ class Saved extends Component {
 
 					<Row>
 					<Container>
-							<div className="border bg-light text-center">
-							<h5 className="m-3">List of Your Books</h5>
-							<a className="btn btn-primary my-2" 
-							href="/">Search</a>
+							<div className="border bg-light">
+								
+								<div className="text-center">
+									<h5 className="m-3">List of Your Books</h5>
+									<a className="btn btn-primary my-2" 
+									href="/">Search</a>
+								</div>
 							
 								<BooksList>
 									{this.state.books.map( (book, index) => (

@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import Title from "../components/Title";
 import Input from "../components/Input";
 import { Row, Container } from "../components/Grid"
+import { Link } from "react-router-dom";
 import Button from "../components/Button"
 import API from "../utils/API";
 import {BooksList, BooksListItem} from "../components/BookList";
@@ -65,8 +66,10 @@ class Search extends Component {
 
 									<Input
 										name="bookSearch"
+										id="searchForm"
 										value={this.state.bookSearch}
 										onChange={this.handleInputChange}
+										onSubmit={this.handleFormSubmit}
 										placeholder="Search for a Book"
 									/>
 									
@@ -88,8 +91,13 @@ class Search extends Component {
 						<div className="border bg-light text-center">
 
 							<h5 className="m-3">Results</h5>
-							<a className="btn btn-primary my-2" 
-							href="/books">Saved Books</a>
+
+							<Link to={"/books"}>
+							<Button
+							color="primary"
+							text="Saved Books">
+							</Button>
+							</Link>
 
 								<BooksList>
 									{this.state.books.map((book, index) => {

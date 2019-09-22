@@ -3,6 +3,8 @@ import Title from "../components/Title";
 import { Row, Container } from "../components/Grid"
 import API from "../utils/API";
 import {BooksList, BooksListItem} from "../components/BookList";
+import { Link } from "react-router-dom";
+import Button from "../components/Button"
 
 class Saved extends Component {
 
@@ -39,8 +41,13 @@ class Saved extends Component {
 					<Container>
 							<div className="border bg-light text-center">
 							<h5 className="m-3">List of Your Books</h5>
-							<a className="btn btn-primary my-2" 
-							href="/">Search</a>
+
+							<Link to={"/"}>
+							<Button
+							color="primary"
+							text="Search Books">
+							</Button>
+							</Link>
 							
 								<BooksList>
 									{this.state.books.map( (book, index) => (

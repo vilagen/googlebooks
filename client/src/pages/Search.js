@@ -27,7 +27,12 @@ class Search extends Component {
     event.preventDefault();
     API.searchBook(this.state.bookSearch)
 			.then( ({data: {items}} ) => 
-			this.setState({ books: items }))
+			{ let newArray = items
+				if(newArray === undefined) {
+					newArray = []
+				}
+				this.setState({ books: newArray })
+			})
 	  .catch(err => console.log(err));
 	  console.log(this.state.books)
 	};
@@ -61,7 +66,8 @@ class Search extends Component {
 						<div className="border my-2 bg-light">
 							<h5 className="m-3">Book Search</h5>
 
-								<form className="mb-3 mx-3">
+								<form className="mb-3 mx-3"
+								onSubmit={this.handleFormSubmit}>
 
 									<Input
 										name="bookSearch"

@@ -30,7 +30,7 @@ return (
 				<h4 className="m-3">{title}</h4>
 					<section>
 
-							<a class="btn btn-primary" 
+							<a className="btn btn-primary" 
 							href={infoLink}>View</a>
 
 							{allowSave && <Button
